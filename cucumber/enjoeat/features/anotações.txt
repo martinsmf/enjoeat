@@ -1,0 +1,76 @@
+#Primeiro restaurantes.feature
+Contexto: Lista de restaurantes
+
+        Dado que tenho uma lista de restaurantes
+
+
+    Cenario: Todos os resturantes 
+        Quando acesso a lista de restaurantes
+        Entao vejo todas as opições disponiveis
+    
+    
+    Cenario: Categoria 
+        Quando acesso a lista de restaurantes
+        Entao cada restaurante exibir sua categoria
+    
+    Cenario: Tempo de entraga        
+        Quando acesso a lista de restaurantes
+        Entao cada restaurante deve exibir o temopo de entrega
+    
+    Cenario: Nota de avaliação        
+        Quando acesso a lista de restaurantes
+        Entao cada restarunte deve exibir sua avaliacao 
+        
+    @temp #Ideal para quando vou cimular varios usuarios.
+    Esquema do Cenario: Restaurantes Disponiveis
+        Quando acesso a lista de restaurantes
+        Entao cada restaurante deve ter <id> <nome> <categoria> <entrega> <avaliacao>
+
+        Exemplos:
+      | id | nome             | categoria   | entrega       |avaliacao|
+      | 0  | "Bread & Bakery" | "Padaria"   | "25 minutos"  |4.9      |
+      | 1  | "Burger House"   | "Hamburgers"| "30 minutos"  |3.5      |
+      | 2  | "Coffee Corner"  | "Cafeteria" | "20 minutos"  |4.8      |
+
+#Primeíro restaurantes_steps.rb
+Dado("que tenho uma lista de restaurantes") do
+  @restaurantes_data = [
+    { name: "Bread & Bakery", categoria: "Padaria", tempo_entrega: "25 minutos", nota_avaliacao: 4.9 },
+    { name: "Burger House", categoria: "Hamburgers", tempo_entrega: "30 minutos", nota_avaliacao: 3.5 },
+    { name: "Coffee Corner", categoria: "Cafeteria", tempo_entrega: "20 minutos", nota_avaliacao: 4.8 },
+  ]
+end
+
+Quando("acesso a lista de restaurantes") do
+  visit "/restaurants"
+end
+
+Entao("vejo todas as opições disponiveis") do
+  restaurantes = all(".restaurant-item")
+  expect(restaurantes.size).to be > 0
+end
+
+Entao("cada restaurante exibir sua categoria") do
+  #vetor
+  restaurantes = all(".restaurant-item")
+
+  @restaurantes_data.each_with_index do |value, index|
+    expect(restaurantes[index]).to have_text value[:categoria]
+  end
+end
+
+Entao("cada restaurante deve exibir o temopo de entrega") do
+  restaurantes = all(".restaurant-item")
+
+  @restaurantes_data.each_with_index do |value, index|
+    expect(restaurantes[index]).to have_text value[:tempo_entrega]
+  end
+end
+
+Entao("cada restarunte deve exibir sua avaliacao") do
+  restaurantes = all(".restaurant-item")
+
+  @restaurantes_data.each_with_index do |value, index|
+    expect(restaurantes[index]).to have_text value[:nota_avaliacao]
+  end
+end

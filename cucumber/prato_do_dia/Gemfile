@@ -1,0 +1,9 @@
+source "https://rubygems.org"
+
+group :test do
+  gem "cucumber"
+  gem "rspec"
+end
+
+#bunble instals para instalar as gems
+#cucumber --init para cirar a strutura fazer isso em td projeto
