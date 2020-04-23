@@ -1,8 +1,9 @@
-Quando("acesso a lista de restaurantes") do
-  visit "/restaurants"
-end
 Dado("que temos os seguintes restaurantes") do |table|
   @restaurante_data = table.hashes
+end
+
+Quando("acesso a lista de restaurantes") do
+  visit "/restaurants"
 end
 
 Entao("devo ver todos os restaurantes desta lista") do
