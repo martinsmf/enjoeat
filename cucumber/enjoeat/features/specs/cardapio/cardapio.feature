@@ -14,3 +14,7 @@ Funcionalidade: Cardápio
             | Classic Burger  | O clássico. Não tem como errar.| R$ 18,50|
             | Batatas Fritas  | Batatas fritas crocantes       | R$ 5,50 |
             | Refrigerante    | O refri mais gelado da cidade. | R$ 4,50 |
+
+    Cenario: Carrinho vasio
+        Quando eu acesso um restaurante "Burger House"
+        Entao vejo a seguinte mensagem no carrinho "Seu carrinho está vazio!"
